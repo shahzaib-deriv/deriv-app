@@ -12,6 +12,7 @@ const ProofOfIdentityContainerForMt5 = ({
     account_status,
     account_settings,
     fetchResidenceList,
+    getChangeableFields,
     height,
     is_from_external,
     is_switching,
@@ -71,6 +72,7 @@ const ProofOfIdentityContainerForMt5 = ({
 
     return (
         <POISubmissionForMT5
+            account_settings={account_settings}
             has_attempted_idv={has_attempted_idv}
             height={height ?? null}
             identity_last_attempt={identity_last_attempt}
@@ -85,7 +87,7 @@ const ProofOfIdentityContainerForMt5 = ({
             residence_list={residence_list}
             citizen_data={citizen_data}
             has_idv_error={has_idv_error}
-            account_settings={account_settings}
+            getChangeableFields={getChangeableFields}
             is_eu_user={is_eu_user}
         />
     );

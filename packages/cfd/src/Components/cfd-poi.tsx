@@ -27,6 +27,7 @@ export type TCFDPOIProps = {
     account_status?: GetAccountStatus;
     addNotificationByKey: (key: string) => void;
     fetchResidenceList?: () => void;
+    getChangeableFields: () => string[];
     height: string;
     is_switching: boolean;
     is_virtual: boolean;
@@ -78,4 +79,5 @@ export default connect(({ client, common, notifications, traders_hub }: RootStor
     account_settings: client.account_settings,
     residence_list: client.residence_list,
     is_eu_user: traders_hub.is_eu_user,
+    getChangeableFields: client.getChangeableFields,
 }))(CFDPOI);
