@@ -14,7 +14,7 @@ import { localize } from '@deriv/translations';
 import RootStore from '../Stores/index';
 import { PoiPoaDocsSubmitted } from '@deriv/account';
 import { connect } from '../Stores/connect';
-import { getAuthenticationStatusInfo, isMobile, WS } from '@deriv/shared';
+import { getAuthenticationStatusInfo, isMobile, WS, Jurisdiction } from '@deriv/shared';
 import { AccountStatusResponse } from '@deriv/api-types';
 import { TCFDDbviOnboardingProps } from './props.types';
 import CFDFinancialStpRealAccountSignup from './cfd-financial-stp-real-account-signup';
@@ -63,7 +63,7 @@ const CFDDbviOnboarding = ({
             if (get_account_status?.authentication) {
                 const { poi_acknowledged_for_maltainvest, poi_acknowledged_for_bvi_labuan_vanuatu, poa_acknowledged } =
                     getAuthenticationStatusInfo(get_account_status);
-                if (jurisdiction_selected_shortcode === 'maltainvest') {
+                if (jurisdiction_selected_shortcode === Jurisdiction.MALTA_INVEST) {
                     setShowSubmittedModal(poi_acknowledged_for_maltainvest && poa_acknowledged);
                 } else
                     setShowSubmittedModal(
