@@ -37,6 +37,7 @@ import Cookies from 'js-cookie';
 import { buildCurrenciesList } from './Modules/Trading/Helpers/currency';
 import moment from 'moment';
 import { setDeviceDataCookie } from './Helpers/device';
+import { makeLoggable } from 'mobx-log';
 
 const LANGUAGE_KEY = 'i18n_language';
 const DEFAULT_LANGUAGE = 'EN';
@@ -407,6 +408,7 @@ export default class ClientStore extends BaseStore {
             setP2pAdvertiserInfo: action.bound,
             setPrevAccountType: action.bound,
         });
+        makeLoggable(this);
 
         reaction(
             () => [
