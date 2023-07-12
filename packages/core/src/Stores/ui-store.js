@@ -2,6 +2,7 @@ import { isMobile, isTouchDevice, LocalStore, routes } from '@deriv/shared';
 import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH } from 'Constants/ui';
 import { action, autorun, computed, observable, makeObservable } from 'mobx';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 const store_name = 'ui_store';
 
@@ -399,6 +400,7 @@ export default class UIStore extends BaseStore {
             toggleUnsupportedContractModal: action.bound,
             toggleUpdateEmailModal: action.bound,
         });
+        makeLoggable(this);
 
         window.addEventListener('resize', this.handleResize);
         autorun(() => {

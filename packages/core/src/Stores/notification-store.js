@@ -30,6 +30,7 @@ import {
 } from './Helpers/client-notifications';
 import { sortNotifications, sortNotificationsMobile } from '../App/Components/Elements/NotificationMessage/constants';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class NotificationStore extends BaseStore {
     is_notifications_visible = false;
@@ -82,6 +83,7 @@ export default class NotificationStore extends BaseStore {
             p2p_completed_orders: observable,
             getP2pCompletedOrders: action.bound,
         });
+        makeLoggable(this);
 
         const debouncedGetP2pCompletedOrders = debounce(this.getP2pCompletedOrders, 1000);
 

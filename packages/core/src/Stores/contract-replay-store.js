@@ -4,6 +4,7 @@ import { Money } from '@deriv/components';
 import { localize } from '@deriv/translations';
 import ContractStore from './contract-store';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class ContractReplayStore extends BaseStore {
     chart_state = '';
@@ -93,8 +94,8 @@ export default class ContractReplayStore extends BaseStore {
             handleSell: action.bound,
             removeErrorMessage: action.bound,
         });
-
         this.root_store = root_store;
+        makeLoggable(this);
     }
 
     onMount(contract_id) {

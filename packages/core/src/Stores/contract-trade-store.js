@@ -14,6 +14,7 @@ import {
 } from '@deriv/shared';
 import ContractStore from './contract-store';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class ContractTradeStore extends BaseStore {
     // --- Observable properties ---
@@ -95,6 +96,7 @@ export default class ContractTradeStore extends BaseStore {
                 }
             }
         );
+        makeLoggable(this);
     }
 
     // -------------------

@@ -1,6 +1,7 @@
 import { WS } from '@deriv/shared';
 import { observable, action, runInAction, makeObservable } from 'mobx';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class ActiveSymbolsStore extends BaseStore {
     active_symbols = [];
@@ -13,6 +14,7 @@ export default class ActiveSymbolsStore extends BaseStore {
             active_symbols: observable,
             setActiveSymbols: action.bound,
         });
+        makeLoggable(this);
     }
 
     async setActiveSymbols() {

@@ -4,6 +4,7 @@ import { getAppId, toMoment, epochToMoment, CFD_PLATFORMS } from '@deriv/shared'
 import { getLanguage } from '@deriv/translations';
 import BinarySocket from '_common/base/socket_base';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class GTMStore extends BaseStore {
     is_gtm_applicable =
@@ -21,6 +22,7 @@ export default class GTMStore extends BaseStore {
             eventHandler: action.bound,
             setLoginFlag: action.bound,
         });
+        makeLoggable(this);
 
         this.onSwitchAccount(this.accountSwitcherListener);
     }

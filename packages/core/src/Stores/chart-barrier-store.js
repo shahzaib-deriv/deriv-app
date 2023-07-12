@@ -1,5 +1,6 @@
 import { action, computed, observable, makeObservable } from 'mobx';
 import { BARRIER_COLORS, BARRIER_LINE_STYLES, CONTRACT_SHADES, DEFAULT_SHADES, barriersToString } from '@deriv/shared';
+import { makeLoggable } from 'mobx-log';
 
 export class ChartBarrierStore {
     color;
@@ -68,6 +69,8 @@ export class ChartBarrierStore {
         this.relative = !has_barrier || /^[+-]/.test(high_barrier);
         this.draggable = !not_draggable && has_barrier;
         this.hidePriceLines = !has_barrier;
+
+        makeLoggable(this);
     }
 
     updateBarriers(high, low, isFromChart = false) {

@@ -4,6 +4,7 @@ import BaseStore from './base-store';
 import { localize } from '@deriv/translations';
 import { isEuCountry } from '_common/utility';
 import { getMultipliersAccountStatus } from './Helpers/client';
+import { makeLoggable } from 'mobx-log';
 
 export default class TradersHubStore extends BaseStore {
     available_platforms = [];
@@ -96,6 +97,7 @@ export default class TradersHubStore extends BaseStore {
             showTopUpModal: action.bound,
             financial_restricted_countries: computed,
         });
+        makeLoggable(this);
 
         reaction(
             () => [

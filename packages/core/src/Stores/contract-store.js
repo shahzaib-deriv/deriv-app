@@ -24,6 +24,7 @@ import { setLimitOrderBarriers, getLimitOrder } from './Helpers/limit-orders';
 import { ChartBarrierStore } from './chart-barrier-store';
 import { createChartMarkers } from './Helpers/chart-markers';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class ContractStore extends BaseStore {
     constructor(root_store, { contract_id }) {
@@ -66,6 +67,8 @@ export default class ContractStore extends BaseStore {
 
         this.root_store = root_store;
         this.contract_id = contract_id;
+
+        makeLoggable(this);
     }
 
     // --- Observable properties ---

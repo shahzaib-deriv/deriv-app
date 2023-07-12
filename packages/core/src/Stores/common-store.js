@@ -7,6 +7,7 @@ import BinarySocket from '_common/base/socket_base';
 import ServerTime from '_common/base/server_time';
 import WS from 'Services/ws-methods';
 import { currentLanguage } from 'Utils/Language/index';
+import { makeLoggable } from 'mobx-log';
 
 export default class CommonStore extends BaseStore {
     constructor(root_store) {
@@ -54,6 +55,7 @@ export default class CommonStore extends BaseStore {
             changeSelectedLanguage: action.bound,
             routeBackInApp: action.bound,
         });
+        makeLoggable(this);
     }
 
     server_time = ServerTime.get() || toMoment(); // fallback: get current time from moment.js

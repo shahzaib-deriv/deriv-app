@@ -3,6 +3,7 @@ import { Pushwoosh } from 'web-push-notifications';
 import { getAppId, getBrandWebsiteName, urlForCurrentDomain } from '@deriv/shared';
 import { getLanguage } from '@deriv/translations';
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class PushwooshStore extends BaseStore {
     // only available on staging & production (bot and deriv)
@@ -17,6 +18,7 @@ export default class PushwooshStore extends BaseStore {
             init: action.bound,
             sendTags: action.bound,
         });
+        makeLoggable(this);
     }
 
     /**

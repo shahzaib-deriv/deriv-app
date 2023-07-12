@@ -24,6 +24,7 @@ import { ChartBarrierStore } from './chart-barrier-store';
 import { setLimitOrderBarriers } from './Helpers/limit-orders';
 
 import BaseStore from './base-store';
+import { makeLoggable } from 'mobx-log';
 
 export default class PortfolioStore extends BaseStore {
     positions = [];
@@ -89,6 +90,7 @@ export default class PortfolioStore extends BaseStore {
         });
 
         this.root_store = root_store;
+        makeLoggable(this);
     }
 
     async initializePortfolio() {
