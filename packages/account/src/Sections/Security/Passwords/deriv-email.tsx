@@ -8,20 +8,15 @@ import FormSubHeader from 'Components/form-sub-header';
 import SentEmailModal from 'Components/sent-email-modal';
 import UnlinkAccountModal from 'Components/unlink-account-modal';
 
-type TDerivEmailProps = {
-    email: string;
-};
-
 /**
  * Display the user's email address and a button to change it.
  * @name DerivEmail
- * @param {string} email - The user's email address.
  * @returns {React.ReactNode}
  */
-const DerivEmail = observer(({ email }: TDerivEmailProps) => {
+const DerivEmail = observer(() => {
     const {
         common: { is_from_derivgo },
-        client: { social_identity_provider, is_social_signup },
+        client: { social_identity_provider, is_social_signup, email },
     } = useStore();
     const { send } = useVerifyEmail('request_email');
     const [is_unlink_account_modal_open, setIsUnlinkAccountModalOpen] = React.useState(false);

@@ -7,10 +7,6 @@ import { mockStore, StoreProvider } from '@deriv/stores';
 jest.mock('Assets/ic-brand-deriv-red.svg', () => () => 'BrandDerivRed');
 
 describe('<DerivPassword />', () => {
-    const mock_props = {
-        email: 'mf@deriv.com',
-    };
-
     let modal_root_el: HTMLDivElement;
 
     beforeAll(() => {
@@ -23,15 +19,15 @@ describe('<DerivPassword />', () => {
         document.body.removeChild(modal_root_el);
     });
 
-    const store = mockStore({});
+    const store = mockStore({ client: { email: 'mf@deriv.com' } });
 
-    const renderComponent = ({ props = mock_props, store_config = store }) =>
+    const renderComponent = ({ store_config = store }) =>
         render(
-            <StoreProvider store={store_config}>
-                <APIProvider>
-                    <DerivPassword {...props} />
-                </APIProvider>
-            </StoreProvider>
+            <APIProvider>
+                <StoreProvider store={store_config}>
+                    <DerivPassword />
+                </StoreProvider>
+            </APIProvider>
         );
 
     it('Should render properly', async () => {

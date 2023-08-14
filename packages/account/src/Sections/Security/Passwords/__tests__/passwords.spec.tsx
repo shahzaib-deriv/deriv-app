@@ -23,11 +23,11 @@ describe('<Passwords />', () => {
 
     const renderComponent = ({ store_config = store }) => {
         return render(
-            <StoreProvider store={store_config}>
-                <APIProvider>
+            <APIProvider>
+                <StoreProvider store={store_config}>
                     <Passwords />
-                </APIProvider>
-            </StoreProvider>
+                </StoreProvider>
+            </APIProvider>
         );
     };
 

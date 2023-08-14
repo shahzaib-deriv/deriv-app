@@ -7,7 +7,6 @@ import userEvent from '@testing-library/user-event';
 
 describe('<PasswordsPlatform />', () => {
     const mock_props = {
-        email: 'test@demo.com',
         has_dxtrade_accounts: false,
         has_mt5_accounts: true,
     };
@@ -24,15 +23,15 @@ describe('<PasswordsPlatform />', () => {
         document.body.removeChild(modal_root_el);
     });
 
-    const store = mockStore({});
+    const store = mockStore({ client: { email: 'test@demo.com' } });
 
     const renderComponent = ({ props = mock_props, store_config = store }) =>
         render(
-            <StoreProvider store={store_config}>
-                <APIProvider>
+            <APIProvider>
+                <StoreProvider store={store_config}>
                     <PasswordsPlatform {...props} />
-                </APIProvider>
-            </StoreProvider>
+                </StoreProvider>
+            </APIProvider>
         );
 
     it('should render DX password section when platform is MT5', async () => {

@@ -16,15 +16,16 @@ type TAppProps = {
 
 const App = ({ passthrough }: TAppProps) => {
     const { root_store, WS } = passthrough;
+    // TODO: Remove this once we have removed usage of WS in @deriv/account
     setWebsocket(WS);
 
     return (
-        <StoreProvider store={root_store}>
-            <APIProvider>
+        <APIProvider>
+            <StoreProvider store={root_store}>
                 <Routes />
                 <ResetTradingPassword />
-            </APIProvider>
-        </StoreProvider>
+            </StoreProvider>
+        </APIProvider>
     );
 };
 

@@ -22,19 +22,15 @@ describe('DerivEmail', () => {
         document.body.removeChild(modal_root_el);
     });
 
-    const mock_props = {
-        email: 'test@deriv.com',
-    };
+    const store = mockStore({ client: { email: 'test@demo.com' } });
 
-    const store = mockStore({});
-
-    const renderComponent = ({ props = mock_props, store_config = store }) =>
+    const renderComponent = ({ store_config = store }) =>
         render(
-            <StoreProvider store={store_config}>
-                <APIProvider>
-                    <DerivEmail {...props} />
-                </APIProvider>
-            </StoreProvider>
+            <APIProvider>
+                <StoreProvider store={store_config}>
+                    <DerivEmail />
+                </StoreProvider>
+            </APIProvider>
         );
 
     it('should render email address in disabled form', () => {

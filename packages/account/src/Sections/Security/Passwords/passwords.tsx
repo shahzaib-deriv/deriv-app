@@ -16,7 +16,6 @@ const Passwords = observer(() => {
         is_populating_mt5_account_list,
         is_populating_dxtrade_account_list,
         is_social_signup,
-        email,
         mt5_login_list,
         is_mt5_password_not_set,
         dxtrade_accounts_list,
@@ -42,17 +41,13 @@ const Passwords = observer(() => {
 
     return (
         <div className='account__passwords'>
-            <DerivEmail email={email} />
-            <DerivPassword email={email} />
+            <DerivEmail />
+            <DerivPassword />
             {!is_from_derivgo && (mt5_login_list?.length > 0 || !is_mt5_password_not_set) && (
-                <PasswordsPlatform
-                    email={email}
-                    has_mt5_accounts={mt5_login_list?.length > 0 || !is_mt5_password_not_set}
-                />
+                <PasswordsPlatform has_mt5_accounts={mt5_login_list?.length > 0 || !is_mt5_password_not_set} />
             )}
             {!is_from_derivgo && (dxtrade_accounts_list?.length > 0 || !is_dxtrade_password_not_set) && (
                 <PasswordsPlatform
-                    email={email}
                     has_dxtrade_accounts={dxtrade_accounts_list?.length > 0 || !is_dxtrade_password_not_set}
                 />
             )}

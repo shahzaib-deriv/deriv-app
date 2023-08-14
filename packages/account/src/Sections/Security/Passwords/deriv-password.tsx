@@ -8,20 +8,15 @@ import FormSubHeader from 'Components/form-sub-header';
 import SentEmailModal from 'Components/sent-email-modal';
 import DerivComLogo from 'Assets/ic-brand-deriv-red.svg';
 
-type TDerivPasswordProps = {
-    email: string;
-};
-
 /**
  * Displays a change password button and with instructions on how to change the password.
  * @name DerivPassword
- * @param {string} email - The user's email address.
  * @returns {React.ReactNode}
  */
-const DerivPassword = observer(({ email }: TDerivPasswordProps) => {
+const DerivPassword = observer(() => {
     const {
         traders_hub: { is_eu_user, financial_restricted_countries },
-        client: { social_identity_provider, is_social_signup },
+        client: { social_identity_provider, is_social_signup, email },
     } = useStore();
     const { send: requestEmail } = useVerifyEmail('request_email');
     const { send: resetPassword } = useVerifyEmail('reset_password');
