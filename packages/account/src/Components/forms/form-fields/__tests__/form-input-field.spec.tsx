@@ -1,7 +1,7 @@
 import React from 'react';
+import { Formik } from 'formik';
 import { render, screen } from '@testing-library/react';
 import FormInputField from '../form-input-field';
-import { Formik } from 'formik';
 
 describe('Tesing <FormInputField/> component', () => {
     it('should render properties', () => {

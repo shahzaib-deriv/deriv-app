@@ -6,7 +6,7 @@ import { toMoment } from '@deriv/shared';
 type TDateOfBirthFieldProps = {
     name: string;
     portal_id: string;
-} & React.ComponentProps<typeof DateOfBirthPicker>;
+} & Omit<React.ComponentProps<typeof DateOfBirthPicker>, 'onBlur' | 'onChange' | 'error'>;
 
 type TDateOfBirthFieldHelpers = {
     field: FieldInputProps<string | moment.Moment>;
