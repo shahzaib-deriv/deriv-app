@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, Icon, Popover, Text } from '@deriv/components';
+import { useRequest } from '@deriv/api';
 import { CFD_PLATFORMS, getPlatformSettings } from '@deriv/shared';
-import { localize, Localize } from '@deriv/translations';
+import { observer, useStore } from '@deriv/stores';
+import { localize } from '@deriv/translations';
 import FormSubHeader from 'Components/form-sub-header';
 import SentEmailModal from 'Components/sent-email-modal';
-import { useRequest } from '@deriv/api';
-import { observer, useStore } from '@deriv/stores';
+import PlatformPartials from './platform-partials';
 
 type TPasswordsPlatformProps = {
     has_dxtrade_accounts?: boolean;
@@ -67,59 +67,22 @@ const PasswordsPlatform = observer(
                 <FormSubHeader title={getPlatformTitle()} />
                 <div className='account__passwords-wrapper'>
                     {has_mt5_accounts && (
-                        <React.Fragment>
-                            <Text
-                                as='p'
-                                className='passwords-platform__desc'
-                                color='prominent'
-                                size='xs'
-                                weight='lighter'
-                            >
-                                <Localize i18n_default_text='Your Deriv MT5 password is for logging in to your Deriv MT5 accounts on the desktop, web, and mobile apps.' />
-                            </Text>
-                            <div className='passwords-platform__content'>
-                                <Popover alignment='bottom' message='Deriv MT5'>
-                                    <Icon icon={`${getPlatformSettings('mt5').icon}-dashboard`} size={32} />
-                                </Popover>
-                                <Button
-                                    className='account__passwords-footer-btn'
-                                    type='button'
-                                    onClick={() => onClickSendEmail(CFD_PLATFORMS.MT5)}
-                                    text={localize('Change password')}
-                                    primary
-                                    large
-                                />
-                            </div>
-                        </React.Fragment>
+                        <PlatformPartials
+                            type={CFD_PLATFORMS.MT5}
+                            handleClick={onClickSendEmail}
+                            description={localize(
+                                'Your Deriv MT5 password is for logging in to your Deriv MT5 accounts on the desktop, web, and mobile apps.'
+                            )}
+                        />
                     )}
                     {has_dxtrade_accounts && (
-                        <React.Fragment>
-                            <Text
-                                as='p'
-                                className='passwords-platform__desc'
-                                color='prominent'
-                                size='xs'
-                                weight='lighter'
-                            >
-                                <Localize
-                                    i18n_default_text='Use the {{platform_name_dxtrade}} password to log in to your {{platform_name_dxtrade}} accounts on the web and mobile apps.'
-                                    values={{ platform_name_dxtrade }}
-                                />
-                            </Text>
-                            <div className='passwords-platform__content'>
-                                <Popover alignment='bottom' message={platform_name_dxtrade}>
-                                    <Icon icon={`${getPlatformSettings('dxtrade').icon}-dashboard`} size={32} />
-                                </Popover>
-                                <Button
-                                    className='account__passwords-footer-btn'
-                                    type='button'
-                                    onClick={() => onClickSendEmail(CFD_PLATFORMS.DXTRADE)}
-                                    text={localize('Change password')}
-                                    primary
-                                    large
-                                />
-                            </div>
-                        </React.Fragment>
+                        <PlatformPartials
+                            type={CFD_PLATFORMS.DXTRADE}
+                            handleClick={onClickSendEmail}
+                            description={localize(
+                                'Use the Deriv X password to log in to your Deriv X accounts on the web and mobile apps.'
+                            )}
+                        />
                     )}
                     <SentEmailModal
                         is_open={is_sent_email_modal_open}
