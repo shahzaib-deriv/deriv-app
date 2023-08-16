@@ -16,10 +16,10 @@ type TFormInputFieldHelpers = {
 /**
  * FormInputField is a wrapper around Input that can be used with Formik.
  * @name FormInputField
- * @param {string} name - Name of the field
- * @param {boolean} [optional] - Whether the field is optional
- * @param {string} [warn] - Display a warning message
- * @param {Input} [props] - Other props to pass to Input
+ * @param name - Name of the field
+ * @param [optional] - Whether the field is optional
+ * @param [warn] - Display a warning message
+ * @param [props] - Other props to pass to Input
  * @returns {React.ReactNode}
  */
 const FormInputField = ({ name, optional = false, warn, ...rest }: FormInputFieldProps) => (

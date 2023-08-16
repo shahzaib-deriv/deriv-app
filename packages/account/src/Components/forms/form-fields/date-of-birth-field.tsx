@@ -17,9 +17,9 @@ type TDateOfBirthFieldHelpers = {
 /**
  * DateOfBirthField is a wrapper around DateOfBirthPicker that can be used with Formik.
  * @name DateOfBirthField
- * @param {string} name - Name of the field
- * @param {string} portal_id - Portal ID
- * @param {TDatePicker} [props] - Other props to pass to DateOfBirthPicker
+ * @param name - Name of the field
+ * @param portal_id - Portal ID
+ * @param [props] - Other props to pass to DateOfBirthPicker
  * @returns {React.ReactNode}
  */
 const DateOfBirthField = ({ name, portal_id, ...rest }: TDateOfBirthFieldProps) => (
