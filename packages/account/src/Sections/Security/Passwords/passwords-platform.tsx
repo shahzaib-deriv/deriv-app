@@ -14,8 +14,9 @@ type TPasswordsPlatformProps = {
 
 /**
  * Displays a change password instructions for MT5 and/or DXTrade.
- * @param {boolean} [has_dxtrade_accounts=false] - Whether the user has DXTrade accounts.
- * @param {boolean} [has_mt5_accounts=false] - Whether the user has MT5 accounts.
+ * @name PasswordsPlatform
+ * @param [has_dxtrade_accounts=false] - Whether the user has DXTrade accounts.
+ * @param [has_mt5_accounts=false] - Whether the user has MT5 accounts.
  * @returns {React.ReactNode}
  */
 const PasswordsPlatform = observer(
