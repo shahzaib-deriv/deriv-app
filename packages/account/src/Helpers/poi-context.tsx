@@ -1,6 +1,7 @@
 import { ResidenceList } from '@deriv/api-types';
-import { service_code, submission_status_code } from 'Sections/Verification/ProofOfIdentity/proof-of-identity-utils';
+import { service_code, submission_status_code } from '../Sections/Verification/ProofOfIdentity/proof-of-identity-utils';
 import React from 'react';
+import { useRouteMatch } from 'react-router-dom';
 
 type TSubmissionStatus = keyof typeof submission_status_code;
 type TSubmissionService = keyof typeof service_code;
@@ -32,14 +33,27 @@ export const POIProvider = ({ children }: React.PropsWithChildren) => {
     const [submission_service, setSubmissionService] = React.useState<TSubmissionService>(service_code.idv);
     const [selected_country, setSelectedCountry] = React.useState({});
 
-    const state = {
-        submission_status,
-        setSubmissionStatus,
-        submission_service,
-        setSubmissionService,
-        selected_country,
-        setSelectedCountry,
-    };
+    const match = useRouteMatch('/account/proof-of-identity');
+
+    const state = React.useMemo(
+        () => ({
+            submission_status,
+            setSubmissionStatus,
+            submission_service,
+            setSubmissionService,
+            selected_country,
+            setSelectedCountry,
+        }),
+        [selected_country, submission_service, submission_status]
+    );
+
+    React.useEffect(() => {
+        if (!match?.isExact) {
+            setSubmissionStatus(submission_status_code.selecting);
+            setSubmissionService(service_code.idv);
+            setSelectedCountry({});
+        }
+    }, [match?.isExact, setSubmissionService, setSubmissionStatus, setSelectedCountry]);
 
     return <POIContext.Provider value={state}>{children}</POIContext.Provider>;
 };
