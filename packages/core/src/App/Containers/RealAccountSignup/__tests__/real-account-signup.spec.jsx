@@ -5,6 +5,7 @@ import { render, screen } from '@testing-library/react';
 
 import RealAccountSignup from '../real-account-signup.jsx';
 import { Analytics } from '@deriv/analytics';
+import { StoreProvider, mockStore } from '@deriv/stores';
 
 jest.mock('Stores/connect', () => ({
     __esModule: true,
@@ -82,7 +83,18 @@ describe('<RealAccountSignup />', () => {
     };
 
     const renderwithRouter = component => {
-        render(<BrowserRouter>{component}</BrowserRouter>);
+        const mock_store = mockStore({
+            feature_flags: {
+                data: {
+                    next_signup_flow: false,
+                },
+            },
+        });
+        render(
+            <BrowserRouter>
+                <StoreProvider store={mock_store}>{component}</StoreProvider>
+            </BrowserRouter>
+        );
     };
 
     it('should render RealAccountSignupModal if is_real_account_signup is true', () => {

@@ -1,0 +1,33 @@
+.signup_wizard {
+    height: calc(74rem - 56px - 64px);
+    width: 95.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 0 !important;
+
+    .timeline_container {
+        min-width: 25.6rem;
+        background: #f2f3f4;
+        padding: 4.8rem 2.4rem;
+    }
+
+    .content_container {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+
+        .close_icon {
+            position: absolute;
+            top: 1.6rem;
+            right: 1.6rem;
+            cursor: pointer;
+        }
+
+        .section {
+            flex-grow: 1;
+            padding-top: 4.8rem;
+        }
+    }
+}

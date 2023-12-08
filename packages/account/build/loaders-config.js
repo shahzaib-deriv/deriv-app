@@ -70,6 +70,9 @@ const css_loaders = [
         loader: 'css-loader',
         options: {
             sourceMap: !IS_RELEASE,
+            modules: {
+                localIdentName: IS_RELEASE ? '[hash:base64]' : '[path][name]__[local]',
+            },
         },
     },
     {
