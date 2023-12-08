@@ -1,5 +1,5 @@
-import { observer, useStore } from '@deriv/stores';
 import React from 'react';
+import { observer, useStore } from '@deriv/stores';
 import { useStep } from 'usehooks-ts';
 
 type Helpers = ReturnType<typeof useStep>[1];
@@ -13,6 +13,8 @@ type TSignupWizardContext = {
 
 type TSignupWizardProvider = {
     children: React.ReactNode;
+    is_wizard_open: boolean;
+    closeWizard: () => void;
 };
 
 const initialHelpers: Helpers = {
@@ -36,29 +38,26 @@ const SignupWizardContext = React.createContext<TSignupWizardContext>({
     closeWizard: () => {
         /* noop */
     },
-    currentStep: 0,
+    currentStep: 1,
     helpers: initialHelpers,
 });
 
 export const useSignupWizardContext = () => React.useContext(SignupWizardContext);
 
-const SignupWizardProvider = observer(({ children }: TSignupWizardProvider) => {
-    const {
-        ui: { is_real_acc_signup_on, closeRealAccountSignup },
-    } = useStore();
+const SignupWizardProvider = ({ children, is_wizard_open, closeWizard }: TSignupWizardProvider) => {
     const [currentStep, helpers] = useStep(5);
 
     const context_state = React.useMemo(
         () => ({
-            is_wizard_open: is_real_acc_signup_on,
-            closeWizard: closeRealAccountSignup,
+            is_wizard_open,
+            closeWizard,
             currentStep,
             helpers,
         }),
-        [closeRealAccountSignup, currentStep, helpers, is_real_acc_signup_on]
+        [closeWizard, currentStep, helpers, is_wizard_open]
     );
 
     return <SignupWizardContext.Provider value={context_state}>{children}</SignupWizardContext.Provider>;
-});
+};
 
 export default SignupWizardProvider;
