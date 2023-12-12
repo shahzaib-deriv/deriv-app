@@ -1,1 +1,1 @@
-export { default as WalletNoWalletFoundState } from './WalletNoWalletFoundState';
+export { default as WalletNoWalletFoundState } from '../CurrencySelection/CurrencySelection';
