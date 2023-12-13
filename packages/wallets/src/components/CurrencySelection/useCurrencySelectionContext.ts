@@ -7,7 +7,7 @@ const CURRENCY_TYPE = Object.freeze({
 });
 
 const useCurrencySelectionContext = () => {
-    const [currency, setCurrency] = useState();
+    const [currency, setCurrency] = useState('');
     const { data: currencyConfig } = useCurrencyConfig();
 
     const currencies = Object.values(currencyConfig ?? {});

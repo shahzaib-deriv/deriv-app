@@ -1,6 +1,8 @@
 import React from 'react';
+import classNames from 'classnames';
 import useDevice from '../../hooks/useDevice';
-import { IconButton, WalletButton, WalletText } from '../Base';
+import BtcIcon from '../../public/images/currencies/btc.svg';
+import { WalletButton, WalletText } from '../Base';
 import useCurrencySelectionContext from './useCurrencySelectionContext';
 import './CurrencySelection.scss';
 
@@ -22,7 +24,18 @@ const CurrencySelection = () => {
                     </WalletText>
                     <div className='currency-selection--currencies-list'>
                         {fiatCurrencies.map(fiatCurrency => {
-                            return <IconButton icon={`IcCurrency-${fiatCurrency.code}`} key={fiatCurrency.code} />;
+                            return (
+                                <div
+                                    className={classNames('currency-selection--currencies-currency', {
+                                        'currency-selection--currencies-currency-selected':
+                                            fiatCurrency.code === currency,
+                                    })}
+                                    key={fiatCurrency.code}
+                                    onClick={() => setCurrency(fiatCurrency.code)}
+                                >
+                                    <BtcIcon />
+                                </div>
+                            );
                         })}
                     </div>
                     <WalletText align='center' size='sm'>
@@ -37,7 +50,18 @@ const CurrencySelection = () => {
                     </WalletText>
                     <div className='currency-selection--currencies-list'>
                         {cryptoCurrencies.map(cryptoCurrency => {
-                            return <IconButton icon={`IcCurrency-${cryptoCurrency.code}`} key={cryptoCurrency.code} />;
+                            return (
+                                <div
+                                    className={classNames('currency-selection--currencies-currency', {
+                                        'currency-selection--currencies-currency-selected':
+                                            cryptoCurrency.code === currency,
+                                    })}
+                                    key={cryptoCurrency.code}
+                                    onClick={() => setCurrency(cryptoCurrency.code)}
+                                >
+                                    <BtcIcon />
+                                </div>
+                            );
                         })}
                     </div>
                 </div>
