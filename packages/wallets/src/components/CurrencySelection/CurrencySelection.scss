@@ -32,6 +32,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             row-gap: 0;
+            justify-items: center;
             column-gap: 3.2rem;
 
             @include desktop {
@@ -45,6 +46,7 @@
         &-icon {
             height: 5rem;
             width: 5rem;
+            overflow: hidden;
         }
 
         &-currency {
