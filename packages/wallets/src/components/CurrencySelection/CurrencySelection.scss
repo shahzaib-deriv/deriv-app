@@ -42,12 +42,19 @@
             }
         }
 
+        &-icon {
+            height: 5rem;
+            width: 5rem;
+        }
+
         &-currency {
             height: 12.8rem;
             width: 12.8rem;
+            background: transparent;
             display: flex;
+            gap: 0.4rem;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             padding: 1.6rem;
             border-radius: 0.8rem;

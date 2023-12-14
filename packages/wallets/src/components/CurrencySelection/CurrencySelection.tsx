@@ -2,10 +2,54 @@ import React from 'react';
 import classNames from 'classnames';
 import { getCurrencyDisplayCode } from '../../../../shared/src/utils/currency';
 import useDevice from '../../hooks/useDevice';
+import AudIcon from '../../public/images/currency-selection/aud.svg';
 import BtcIcon from '../../public/images/currency-selection/btc.svg';
+import EthIcon from '../../public/images/currency-selection/eth.svg';
+import EurIcon from '../../public/images/currency-selection/eur.svg';
+import EusdtIcon from '../../public/images/currency-selection/eusdt.svg';
+import GbpIcon from '../../public/images/currency-selection/gbp.svg';
+import LtcIcon from '../../public/images/currency-selection/ltc.svg';
+import TusdtIcon from '../../public/images/currency-selection/tusdt.svg';
+import UnknownIcon from '../../public/images/currency-selection/unknown.svg';
+import UsdIcon from '../../public/images/currency-selection/usd.svg';
+import UsdcIcon from '../../public/images/currency-selection/usdc.svg';
+import UstIcon from '../../public/images/currency-selection/ust.svg';
 import { WalletButton, WalletText } from '../Base';
 import useCurrencySelectionContext from './useCurrencySelectionContext';
 import './CurrencySelection.scss';
+
+type TCurrencyIcon = {
+    currencyCode: string;
+};
+
+const CurrencyIcon = ({ currencyCode }: TCurrencyIcon) => {
+    switch (currencyCode.toLowerCase()) {
+        case 'aud':
+            return <AudIcon />;
+        case 'eur':
+            return <EurIcon />;
+        case 'gbp':
+            return <GbpIcon />;
+        case 'usd':
+            return <UsdIcon />;
+        case 'btc':
+            return <BtcIcon />;
+        case 'eth':
+            return <EthIcon />;
+        case 'ltc':
+            return <LtcIcon />;
+        case 'usdc':
+            return <UsdcIcon />;
+        case 'ust':
+            return <UstIcon />;
+        case 'eusdt':
+            return <EusdtIcon />;
+        case 'tusdt':
+            return <TusdtIcon />;
+        default:
+            return <UnknownIcon />;
+    }
+};
 
 const CurrencySelection = () => {
     const { isDesktop, isMobile } = useDevice();
@@ -19,9 +63,9 @@ const CurrencySelection = () => {
                         Select your preferred currency
                     </WalletText>
                 )}
-                {currencyLists.map(currencyList => {
+                {currencyLists.map((currencyList, index) => {
                     return (
-                        <div className='currency-selection--currencies' key={currencyList.at(0)?.code}>
+                        <div className='currency-selection--currencies' key={index}>
                             <WalletText align='center' as='div' size='md' weight='bold'>
                                 {currencyList
                                     .at(0)
@@ -34,7 +78,7 @@ const CurrencySelection = () => {
                             <div className='currency-selection--currencies-list'>
                                 {currencyList.map(currencyListItem => {
                                     return (
-                                        <div
+                                        <button
                                             className={classNames('currency-selection--currencies-currency', {
                                                 'currency-selection--currencies-currency-selected':
                                                     currencyListItem.code === currency,
@@ -42,16 +86,18 @@ const CurrencySelection = () => {
                                             key={currencyListItem.code}
                                             onClick={() => setCurrency(currencyListItem.code)}
                                         >
-                                            <div>
-                                                <BtcIcon />
+                                            <div className='currency-selection--currencies-icon'>
+                                                <CurrencyIcon currencyCode={currencyListItem.code} />
                                             </div>
-                                            <WalletText align='center' size='sm'>
-                                                {currencyListItem?.name}
-                                            </WalletText>
-                                            <WalletText align='center' size='sm'>
-                                                ({getCurrencyDisplayCode(currencyListItem.code)})
-                                            </WalletText>
-                                        </div>
+                                            <div>
+                                                <WalletText align='center' size='sm'>
+                                                    {currencyListItem?.name}
+                                                </WalletText>
+                                                <WalletText align='center' size='sm'>
+                                                    ({getCurrencyDisplayCode(currencyListItem.code)})
+                                                </WalletText>
+                                            </div>
+                                        </button>
                                     );
                                 })}
                             </div>
