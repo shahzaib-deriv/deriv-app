@@ -15,8 +15,9 @@ const useCurrencySelectionContext = () => {
         currencies.filter(currencyObject => currencyObject.type === CURRENCY_TYPE.CRYPTO)
     );
     const fiatCurrencies = Array.from(currencies.filter(currencyObject => currencyObject.type === CURRENCY_TYPE.FIAT));
+    const currencyLists = [fiatCurrencies, cryptoCurrencies];
 
-    return { cryptoCurrencies, currency, fiatCurrencies, setCurrency };
+    return { currency, currencyLists, setCurrency };
 };
 
 export default useCurrencySelectionContext;
